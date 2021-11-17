@@ -25,7 +25,7 @@ const TaskSchema = new Schema(
   }
 );
 
-TaskSchema.pre("validate", async function (done) {
+TaskSchema.pre("validate", function (done) {
   if (!this.get("taskId")) {
     this.set("taskId", uuidv4());
   }

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 module.exports = {
   error: console.error,
   info: console.info,

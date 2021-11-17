@@ -16,3 +16,9 @@ module.exports.createTask = async (task) => {
 
   return newTask;
 };
+
+module.exports.createManyTask = async (tasks) => {
+  const newTask = Task.insertMany(tasks);
+
+  return newTask;
+};
