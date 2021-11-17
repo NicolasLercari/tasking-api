@@ -1,13 +1,18 @@
 const Task = require("./task.model");
 
-module.exports.getAllTasks = async () => {
-  const tasks = await Task.find({ feePercentage: { $gt: 0 } });
+module.exports.getAllTasks = async (limit) => {
+  const tasks = await Task.find({}).limit(limit);
   return tasks;
 };
 
-module.exports.createTask = async (transaction) => {
-    const newTask = new Task({ transaction });
-    await task.save();
+module.exports.countTasks = async () => {
+  const count = await Task.countDocuments();
+  return count;
+};
 
-    return newTask;
+module.exports.createTask = async (task) => {
+  const newTask = new Task(task);
+  await newTask.save();
+
+  return newTask;
 };
