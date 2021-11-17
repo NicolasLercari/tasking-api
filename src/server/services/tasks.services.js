@@ -2,17 +2,17 @@ const taskRepository = require("../../database/entities/task/task.repository");
 const loremFakerServices = require("../../externalServices/loremFaker/loremFaker.service");
 
 module.exports.getTasks = async ({ quantity }) => {
-  const totalTasks = await taskRepository.countTasks(quantity);
+  const currentsTasks = await taskRepository.getAllTasks(quantity);
 
-  if (totalTasks < quantity) {
+  let newTasks = [];
+
+  if (currentsTasks.length < quantity) {
     const taskList = await loremFakerServices.getTasks({
-      quantity: quantity - totalTasks,
+      quantity: quantity - currentsTasks.length,
     });
 
-    await Promise.all(
-      taskList.map((taskData) => taskRepository.createTask(taskData))
-    );
+    newTasks = await taskRepository.createManyTask(taskList);
   }
 
-  return taskRepository.getAllTasks(quantity);
+  return [...newTasks, ...currentsTasks];
 };
