@@ -1,7 +1,7 @@
 const Mongoose = require("mongoose");
 const config = require("config");
 
-const logger = require("../logger/logger");
+const logger = require("../../logger/logger");
 
 const { host, dbName } = config.get("dbConfig");
 

@@ -1,0 +1,7 @@
+{
+	"dbConfig": {
+		"host": "localhost",
+		"dbName": "taskDB",
+		"enabled": true
+	}
+}
