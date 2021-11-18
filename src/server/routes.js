@@ -1,7 +1,7 @@
+const { setTasksRoutes } = require("./routes/tasks.routes");
+const { setHealthRoutes } = require("./routes/health.routes");
+
 module.exports.setRoutes = (server) => {
-  server.route({
-    method: "GET",
-    path: "/health",
-    handler: () => "ok",
-  });
+  setHealthRoutes(server);
+  setTasksRoutes(server);
 };

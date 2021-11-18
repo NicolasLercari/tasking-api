@@ -1,6 +1,8 @@
 const Hapi = require("@hapi/hapi");
+const config = require("config");
 const { startServer } = require("./server/server");
 const { connectDB } = require("./database/db");
+const logger = require("./logger/logger");
 
 // Server http
 const server = Hapi.server({
@@ -10,10 +12,10 @@ const server = Hapi.server({
 
 process.on("unhandledRejection", (err) => {
   // eslint-disable-next-line no-console
-  console.error(err);
+  logger.error(err);
   process.exit(1);
 });
 (async () => {
-  if (process.env.DB_ENABLED === "true") await connectDB();
+  if (config.get("dbConfig.enabled") === true) await connectDB();
   startServer(server);
 })();

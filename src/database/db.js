@@ -1,5 +1,9 @@
 const Mongoose = require("mongoose");
+const config = require("config");
+
 const logger = require("../logger/logger");
+
+const { host, dbName } = config.get("dbConfig");
 
 const connectDB = () =>
   new Promise((resolve) => {
@@ -10,10 +14,8 @@ const connectDB = () =>
       resolve(true);
     }
 
-    const { DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME } = process.env;
-
-    const uri = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`;
-    logger.info(`[Database] Connecting to ${DB_HOST}/${DB_NAME}`);
+    const uri = `mongodb://${host}/${dbName}`;
+    logger.info(`[Database] Connecting to ${host}/${dbName}`);
     Mongoose.connect(uri, {
       useNewUrlParser: true,
       useFindAndModify: true,
@@ -21,9 +23,7 @@ const connectDB = () =>
       useCreateIndex: true,
     })
       .then(() => {
-        logger.info(
-          `[Database] Successfully connected to ${DB_HOST}/${DB_NAME}`
-        );
+        logger.info(`[Database] Successfully connected to ${host}/${dbName}`);
         resolve(true);
       })
       .catch((error) => {
