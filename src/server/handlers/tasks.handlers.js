@@ -1,12 +1,16 @@
 const logger = require("../../logger/logger");
 const tasksServices = require("../services/tasks.services");
 
-module.exports.getTasks = async (req) => {
-  const { quantity = 3 } = req.query;
+module.exports.getTasks = async (req, h) => {
+  const { quantity, limit, page } = req.query;
 
-  const tasks = tasksServices.getTasks({ quantity: Number(quantity) });
+  const { tasks, totalCount } = await tasksServices.getTasks({
+    quantity: Number(quantity),
+    page,
+    limit,
+  });
 
-  return tasks;
+  return h.response({ results: tasks, totalCount });
 };
 
 module.exports.updateTask = async (req) => {

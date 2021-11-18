@@ -1,18 +1,18 @@
-const taskRepository = require("../../database/entities/task/task.repository");
+const taskRepository = require("../../database/mongo/entities/task/task.repository");
 const loremFakerServices = require("../../externalServices/loremFaker/loremFaker.service");
 
-module.exports.getTasks = async ({ quantity }) => {
-  const currentsTasks = await taskRepository.getAllTasks(quantity);
+module.exports.getTasks = async ({ quantity, page, limit }) => {
+  const { tasks, totalCount } = await taskRepository.getAllTasks(page, limit);
 
-  let newTasks = [];
+  const newTasks = [];
 
-  if (currentsTasks.length < quantity) {
+  if (totalCount < quantity) {
     const taskList = await loremFakerServices.getTasks({
-      quantity: quantity - currentsTasks.length,
+      quantity: quantity - totalCount,
     });
 
-    newTasks = await taskRepository.createManyTask(taskList);
+    taskRepository.createManyTask(taskList);
   }
 
-  return [...newTasks, ...currentsTasks];
+  return { tasks: [...newTasks, ...tasks], totalCount };
 };
