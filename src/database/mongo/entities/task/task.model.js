@@ -1,10 +1,11 @@
 const { model, Schema } = require("mongoose");
-const { v4: uuidv4 } = require("uuid");
+const { v1: uuidv1 } = require("uuid");
 
 const TaskSchema = new Schema(
   {
     taskId: {
       type: String,
+      default: () => uuidv1(),
       required: true,
       unique: true,
       trim: true,
@@ -25,13 +26,5 @@ const TaskSchema = new Schema(
     },
   }
 );
-
-TaskSchema.pre("validate", function (done) {
-  if (!this.get("taskId")) {
-    this.set("taskId", uuidv4());
-  }
-
-  done();
-});
 
 module.exports = model("Task", TaskSchema);

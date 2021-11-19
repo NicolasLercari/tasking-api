@@ -1,6 +1,6 @@
 const Task = require("./task.model");
 
-module.exports.getAllTasks = async (page, limit) => {
+module.exports.getAllTasks = async ({ page, limit }) => {
   const [{ tasks, pageInfo }] = await Task.aggregate([
     { $match: {} },
     {
