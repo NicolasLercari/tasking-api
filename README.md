@@ -25,4 +25,6 @@ run the following commands:
 
 `cd tasking-compose && docker-compose up`
 
+by default tasking-api run on port 4646
+
 *Note: you need to clone too [tasking-client](https://github.com/NicolasLercari/tasking-client)*
