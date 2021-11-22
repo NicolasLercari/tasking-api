@@ -7,8 +7,8 @@ USER node
 
 COPY --chown=node:node ./package*.json ./
 
-RUN npm install --silent --ignore-optional --only=prod
+RUN npm install --silent --ignore-optional
 
 COPY --chown=node:node . .
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]

@@ -1,7 +1,10 @@
 {
-	"dbConfig": {
-		"host": "localhost",
-		"dbName": "taskDB",
-		"enabled": true
+	"server": {
+		"host": "0.0.0.0",
+		"port": "4646"
+	},
+	"redisConfig": {
+		"host": "tasking-redis",
+		"port": 6379
 	}
 }

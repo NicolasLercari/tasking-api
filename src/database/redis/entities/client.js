@@ -1,8 +1,14 @@
 const redis = require("redis");
 const util = require("util");
+const config = require("config");
 const logger = require("../../../logger/logger");
 
-const client = redis.createClient();
+const { host, port } = config.get("redisConfig");
+
+const client = redis.createClient({
+  host,
+  port,
+});
 
 client.on("error", (error) => {
   logger.error(error);

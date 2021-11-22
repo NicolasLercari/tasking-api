@@ -2,11 +2,10 @@ const { client } = require("../client");
 
 const KEY_NAME = "tasks";
 
-module.exports.getAllTasks = async ({ page, limit = -1 }) => {
-  const start = (page - 1) * limit;
-  const stop = start + limit - 1;
-
-  const tasks = (await client.lrange(KEY_NAME, start, stop)).map(JSON.parse);
+module.exports.getAllTasks = async ({ skip, limit }) => {
+  const tasks = (
+    await client.lrange(KEY_NAME, skip, limit ? limit - 1 : -1)
+  ).map(JSON.parse);
   const totalCount = await client.llen(KEY_NAME);
 
   return { tasks, totalCount };

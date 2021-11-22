@@ -18,5 +18,5 @@ module.exports.updateTask = async (req) => {
 
   logger.info(`task update request with taskId: ${taskId}`);
 
-  return "ok";
+  return { status: "OK" };
 };

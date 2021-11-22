@@ -11,10 +11,12 @@ module.exports.getTasks = async ({ quantity, page, limit }) => {
 
     await taskRepository.createManyTask(taskList);
   }
+  const skip = (page - 1) * limit;
+  const repositoryLimit = skip + Math.min(quantity - skip, limit);
 
   const { tasks } = await taskRepository.getAllTasks({
-    page,
-    limit: Math.min(quantity, limit),
+    skip,
+    limit: repositoryLimit,
   });
 
   return { tasks, totalCount: quantity };
