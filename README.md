@@ -19,10 +19,10 @@ Sequence Diagram
 
 ## Run local
     
-clone repo (tasking-compose)[https://github.com/NicolasLercari/tasking-compose] on the same directory of tasking-api
+clone repo [tasking-compose](https://github.com/NicolasLercari/tasking-compose) on the same directory of tasking-api
 
 run the following commands: 
 
 `cd tasking-compose && docker-compose up`
 
-*Note: you need to clone too (tasking-client)[https://github.com/NicolasLercari/tasking-client]*
+*Note: you need to clone too [tasking-client](https://github.com/NicolasLercari/tasking-client)*
