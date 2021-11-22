@@ -1,5 +1,6 @@
 # Created by https://www.gitignore.io/api/node,sublimetext
 package-lock.json
+.idea
 .vscode/launch.json
 /certs
 ecosystem.config.js
@@ -62,7 +63,7 @@ node_modules
 # workspace files are user-specific
 *.sublime-workspace
 
-# project files should be checked into the repository, unless a significant
+# project files should be checked into the database, unless a significant
 # proportion of contributors will probably not be using SublimeText
 # *.sublime-project
 

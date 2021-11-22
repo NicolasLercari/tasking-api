@@ -1,11 +1,11 @@
 {
-  "name": "tasks-api",
+  "name": "tasking-api",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "node ./src/index.js",
-    "dev": "node-dev ./src/index.js",
+    "dev": "node-dev --inspect=0.0.0.0:9330 ./src/index.js",
     "lint": "eslint . --ext=js,jsx; exit 0",
     "lint:fix": "eslint src --fix",
     "prettier": "prettier --write **/*.{js,json,md}",

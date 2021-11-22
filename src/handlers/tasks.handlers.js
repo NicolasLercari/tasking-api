@@ -1,4 +1,4 @@
-const logger = require("../../logger/logger");
+const logger = require("../logger/logger");
 const tasksServices = require("../services/tasks.services");
 
 module.exports.getTasks = async (req, h) => {
@@ -18,5 +18,5 @@ module.exports.updateTask = async (req) => {
 
   logger.info(`task update request with taskId: ${taskId}`);
 
-  return "ok";
+  return { status: "OK" };
 };
