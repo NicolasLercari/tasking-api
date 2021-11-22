@@ -1,4 +1,4 @@
-# Task API 
+# Tasking API 
 
 ## Project description
 This project solve the [tasking full stack challenge](https://drive.google.com/file/d/1clquVvZzv_A-tJ-Y7HuHcj_RZPgKx5PG/view?usp=sharing).
@@ -13,4 +13,16 @@ Sequence Diagram
 
 ### Technical debts
 - Paginate request to lorem faker api. This API crash with quantity arround 200.000
-- 
+
+
+
+
+## Run local
+    
+###clone repo (tasking-compose)[] on the same directory of tasking-api
+
+run the following commands: 
+
+`cd tasking-compose && docker-compose up`
+
+*Note: you need to clone too (tasking-client)[]*

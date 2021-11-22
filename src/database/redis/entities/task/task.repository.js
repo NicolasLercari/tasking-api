@@ -16,5 +16,12 @@ module.exports.countAllTasks = async () => {
 };
 
 module.exports.createManyTask = async (tasks) => {
-  return client.rpush([KEY_NAME, ...tasks.map(JSON.stringify)]);
+  const totalCount = (await client.llen(KEY_NAME)) + 1;
+
+  return client.rpush([
+    KEY_NAME,
+    ...tasks.map((task, index) =>
+      JSON.stringify({ id: totalCount + index, ...task })
+    ),
+  ]);
 };
